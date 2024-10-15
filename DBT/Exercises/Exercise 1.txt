@@ -1,0 +1,240 @@
+1. Create the table SEMP with the following structure:- 
+ 
+ EMPNO CHAR(4) 
+ EMPNAME CHAR(20) 
+ BASIC FLOAT 
+ DEPTNO CHAR(2) 
+ DEPTHEAD CHAR(4)
+
+Ans : 
+mysql> create table SEMP (
+    ->  EMPNO CHAR(4),
+    -> EMPNAME CHAR(20),
+    -> BASIC FLOAT,
+    -> DEPTNO CHAR(2),
+    -> DEPTHEAD CHAR(4));
+Query OK, 0 rows affected (0.04 sec)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2. Create the table SDEPT with the following structure:- 
+ 
+ DEPTNO CHAR(2) 
+ DEPTNAME CHAR(15)
+
+Ans: mysql> create table SDEPT (
+    ->  DEPTNO CHAR(2),
+    ->  DEPTNAME CHAR(15));
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+3. Insert into the SDEPT table the following values:- 
+ 
+10, Development 
+20, Training 
+ 
+Ans: 
+mysql> insert into sdept (deptno,deptname) values
+    -> (10,'Development'),
+    -> (20,'Training');
+Query OK, 2 rows affected (0.01 sec)
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+4. Insert into the SEMP table the following values:- 
+ 
+0001, SUNIL, 6000, 10 
+0002, HIREN, 8000, 20 
+0003, ALI, 4000, 10, 0001 
+0004, GEORGE, 6000, 0002 
+ 
+Ans:
+insert into semp (empno, empname, basic,deptno) values
+    ->  (0001, 'SUNIL', 6000, 10),
+    ->  (0002, 'HIREN', 8000, 20);
+    -> (0004, 'GEORGE', 6000, 0002);
+
+mysql> insert into semp (empno, empname, basic,deptno,depthead) values
+    ->  (0003, 'ALI', 4000, 10, 0001);
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Create S, P, J, SPJ tables as specified below and insert a few rows in each table:- 
+ 
+ SUPPLIER 
+(S#, Sname, Status, City) 
+- S 
+ PARTS 
+(P#, Pname, Color, Weight, City) 
+- P 
+ PROJECTS 
+(J#, Jname, City) 
+- J 
+ SUPPLIER-PARTS-PROJECT 
+(S#, P#, J#, Qty) 
+ 
+- SPJ 
+Sample data for S# column:- ‘S1’, ‘S2’, ‘S3’, etc. 
+Sample data for P# column:- ‘P1’, ‘P2’, ‘P3’, etc. 
+Sample data for J# column:- ‘J1’, ‘J2’, ‘J3’, etc. 
+Sample data for Status column:- 10, 20, 30, etc. 
+ i
+Write the SELECT queries to do the following:- 
+ 
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+5. Display all the data from the S table. 
+ 
+mysql> select * from supplier;
++------+------------+--------+--------+
+| s#   | Sname      | Status | city   |
++------+------------+--------+--------+
+| s1   | John doe   |     10 | paris  |
+| s2   | Tom Holand |     20 | Athens |
+| s3   | Kane W     |     30 | London |
++------+------------+--------+--------+
+3 rows in set (0.00 sec)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+6. Display only the S# and SNAME fields from the S table. 
+ mysql> select `s#`, sname from supplier;
++------+------------+
+| s#   | sname      |
++------+------------+
+| s1   | John doe   |
+| s2   | Tom Holand |
+| s3   | Kane W     |
++------+------------+
+3 rows in set (0.00 sec)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+7. Display the PNAME and COLOR from the P table for the CITY=”London”. 
+
+mysql> select pname, color from parts;
++--------+-------+
+| pname  | color |
++--------+-------+
+| Part X | Red   |
+| Part Y | Blue  |
+| Part Z | Green |
++--------+-------+
+3 rows in set (0.00 sec)
+
+ 
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+8. Display all the Suppliers from London. 
++------+--------+--------+--------+
+| s#   | Sname  | Status | city   |
++------+--------+--------+--------+
+| s3   | Kane W |     30 | London |
++------+--------+--------+--------+
+1 row in set (0.00 sec)
+ 
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+9. Display all the Suppliers from Paris or Athens. 
+ 
+mysql> select * from supplier where city = 'paris' or city = 'Athens';
++------+------------+--------+--------+
+| s#   | Sname      | Status | city   |
++------+------------+--------+--------+
+| s1   | John doe   |     10 | paris  |
+| s2   | Tom Holand |     20 | Athens |
++------+------------+--------+--------+
+2 rows in set (0.00 sec)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+10. Display all the Projects in Athens. 
+
+mysql> select * from projects  where city = 'Athens';
++----+---------------+--------+
+| J# | Jname         | City   |
++----+---------------+--------+
+| J3 | Project Gamma | Athens |
++----+---------------+--------+
+1 row in set (0.00 sec)
+
+ 
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+11. Display all the Partnames with the weight between 12 and 14 (inclusive of both). 
+mysql> select pname from parts where weight between 1200 and 1400;
++--------+
+| pname  |
++--------+
+| Part X |
++--------+
+1 row in set (0.00 sec)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+ 
+12. Display all the Suppliers with a Status greater than or equal to 20. 
+
+mysql> select * from supplier where status >= 20;
++------+------------+--------+--------+
+| s#   | Sname      | Status | city   |
++------+------------+--------+--------+
+| s2   | Tom Holand |     20 | Athens |
+| s3   | Kane W     |     30 | London |
++------+------------+--------+--------+
+2 rows in set (0.00 sec)
+ 
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+13. Display all the Suppliers except the Suppliers from London. 
+ mysql> select * from supplier where city != 'London';
++------+------------+--------+--------+
+| s#   | Sname      | Status | city   |
++------+------------+--------+--------+
+| s1   | John doe   |     10 | paris  |
+| s2   | Tom Holand |     20 | Athens |
++------+------------+--------+--------+
+2 rows in set (0.00 sec)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+14. Display only the Cities from where the Suppliers come from. 
+ +--------+
+| city   |
++--------+
+| paris  |
+| Athens |
+| London |
++--------+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+15. Assuming that the Part Weight is in GRAMS, display the same in 
+MILLIGRAMS and KILOGRAMS.
+
++------------+------------+
+| Milligrams | Kilo grams |
++------------+------------+
+|    1200000 |     1.2000 |
+|     700000 |     0.7000 |
+|     910000 |     0.9100 |
++------------+------------+
+3 rows in set (0.00 sec)

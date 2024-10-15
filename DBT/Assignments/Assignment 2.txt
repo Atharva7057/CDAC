@@ -1,0 +1,17 @@
+1) Which field of the Customers table is the primary key?
+Ans : Customer id;
+
+2) What is the 4th column of the Customers table?
+Ans : Rating
+
+3) What is another word for row? For column?
+
+Ans : row = record;
+      column = field;
+
+4) Why isn’t it possible to see the first five rows of a table?
+
+Ans : 
+Because in RDBMS table is not a file, every row is a file .
+in RDBMS  rows of table are not stored sequentially, they are not stored in any specific order. 
+Rows of tables are scattered in database server hard disks. All this is to speed insert statement.
