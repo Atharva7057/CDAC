@@ -1,0 +1,76 @@
+1) Create a union of two queries that shows the names, cities, and ratings of all 
+customers. Those with rating of 200 or greater will also have the words “High 
+Rating”, while the others will have the words “Low Rating”.
+
+mysql> SELECT cname, city, rating, 'High Rating' AS RatingLabel
+    -> FROM customers
+    -> WHERE rating >= 200
+    ->
+    -> UNION
+    ->
+    -> SELECT cname, city, rating, 'Low Rating' AS RatingLabel
+    -> FROM customers
+    -> WHERE rating < 200;
++----------+----------+--------+-------------+
+| cname    | city     | rating | RatingLabel |
++----------+----------+--------+-------------+
+| Giovanni | Rome     |    200 | High Rating |
+| Liu      | San Jose |    200 | High Rating |
+| Grass    | Berlin   |    300 | High Rating |
+| Cisneros | San Jose |    300 | High Rating |
+| Hoffman  | London   |    100 | Low Rating  |
+| Clemens  | London   |    100 | Low Rating  |
+| Pereira  | Rome     |    100 | Low Rating  |
++----------+----------+--------+-------------+
+7 rows in set (0.00 sec)
+
+2) Write a command that produces the name and number of each salesperson and 
+each customer with more than one current order. Put the results in alphabetical 
+order.
+
+mysql> select cname, snum
+    -> from customers
+    -> where snum in (
+    -> select snum from customers group by snum having count(*) > 1)
+    -> union
+    -> select sname,snum from salesperson order by 1;
++---------+------+
+| cname   | snum |
++---------+------+
+| Axelrod | 1003 |
+| Clemens | 1001 |
+| Grass   | 1002 |
+| Hoffman | 1001 |
+| Liu     | 1002 |
+| Motika  | 1004 |
+| peel    | 1001 |
+| Rifkin  | 1007 |
+| seeres  | 1002 |
++---------+------+
+9 rows in set (0.00 sec)
+
+
+3) Form a union of three queries. Have the first select the snums of all salespeople in 
+San Jose; the second, the cnums of all customers in San Jose; and the third the 
+onums of all orders on October 3. Retain duplicates between the last two queries 
+but eliminate any redundancies between either of them and the first. 
+(Note: in the sample tables as given, there would be no such redundancy. This is 
+besides the point.
+
+mysql> select snum from salesperson where city = 'san Jose'
+    -> union
+    -> select cnum from customers where city = 'san jose'
+    -> union
+    -> select onum from orders where odate = '1990-10-03';
++------+
+| snum |
++------+
+| 1002 |
+| 2003 |
+| 2008 |
+| 3001 |
+| 3003 |
+| 3002 |
+| 3005 |
+| 3006 |
++------+
