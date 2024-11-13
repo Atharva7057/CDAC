@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('bg2.jpg');
+    background-size: cover;
+    height: 100vh;
+    position: relative; 
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(33, 33, 33, 0.5); 
+}
+
+#container {
+    margin-top: 10%;
+    padding: 30px 50px;
+    backdrop-filter: blur(10px); 
+    box-shadow: 3px 5px 20px rgb(188, 188, 190);
+    position: relative; 
+    z-index: 2; 
+    border-radius: 10px; 
+}
+
+#inner {
+    text-align: center;
+    color: rgb(214, 209, 209);
+    font-family: "Roboto Mono", monospace;
+}
+
+.inp {
+    margin-bottom: 20px;
+    display: flex;
+    
+}
+
+.inp input {
+    width: 100%; 
+    padding: 10px;
+    border-radius: 25px;
+    border: none;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+    margin-left: 20px;
+}
+
+#pic {
+    height: 80px;
+    width: 80px;
+    box-shadow: 1px 3px 20px rgb(188, 188, 190);
+    border-radius: 100%;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+#pic img {
+    height: 80px;
+    width: 80px;
+    border-radius: 100%;
+}
+
+#btn {
+    width: 90%; 
+    border-radius: 25px;
+    border: none;
+    margin-left: 39px;
+    padding: 10px;
+    background: linear-gradient(#7E57C2, #e16664);
+    color: rgb(255, 255, 255);
+    font-size: medium;
+    cursor: pointer; 
+}
+p {
+    font-size: 12px;
+}
+
+a {
+    color: #e16664; 
+    text-decoration: none; 
+}
